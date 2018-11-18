@@ -1,0 +1,7 @@
+name: EnhancedWater
+version: 1.0.0
+author: Offz
+main: com.mineinabyss.enhancedwater.EnhancedWater
+
+prefix: EW
+description: A mod that makes water a lot more dangerous
