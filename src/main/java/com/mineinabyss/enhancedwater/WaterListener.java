@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Levelled;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,10 +14,21 @@ import org.bukkit.util.Vector;
 import java.util.UUID;
 
 public class WaterListener implements Listener {
+    private EnhancedWater plugin;
+    private FileConfiguration config;
 
-    double checkRange = 0.3; //multiplier for blocks around player to be checked
-    double fallRange = 1.2; //block distance to check for player to be pushed while falling in water
-    double pushVelocity = 0.2; //velocity to push players off horizontally in waterfall
+    private double checkRange; //multiplier for blocks around player to be checked
+    private double fallRange; //block distance to check for player to be pushed while falling in water
+    private double pushVelocity; //velocity to push players off horizontally in waterfall
+
+    public WaterListener(EnhancedWater plugin) {
+        this.plugin = plugin;
+        this.config = plugin.getConfig();
+
+        checkRange = config.getDouble("checkRange");
+        fallRange = config.getDouble("fallRange");
+        pushVelocity = config.getDouble("pushVelocity");
+    }
 
     @EventHandler
     public void onPlayerWaterFall(PlayerMoveEvent e) {

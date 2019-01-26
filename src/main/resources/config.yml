@@ -1,0 +1,8 @@
+# Multiplier for blocks around player to be checked
+checkRange: 0.3
+
+# Block distance to check for player to be pushed while falling in water
+fallRange: 1.2
+
+# Velocity to push players off horizontally in waterfall
+pushVelocity: 0.2
