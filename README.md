@@ -1,6 +1,6 @@
 # DangerousWater
 
-Allows water damage and more realistic water functionality. Originally intended for [Mine in Abyss](https://github.com/Derongan/MineInAbyss)
+Allows water damage and more realistic water functionality. Originally intended for [Mine in Abyss](https://github.com/MineInAbyss)
 
 ## Functionality
 
