@@ -1,4 +1,4 @@
-package com.mineinabyss.enhancedwater;
+package com.mineinabyss.deadlywaters;
 
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -14,14 +14,14 @@ import org.bukkit.util.Vector;
 import java.util.UUID;
 
 public class WaterListener implements Listener {
-    private EnhancedWater plugin;
+    private DeadlyWaters plugin;
     private FileConfiguration config;
 
     private double checkRange = 0.3; //multiplier for blocks around player to be checked
     private double fallRange = 1.2; //block distance to check for player to be pushed while falling in water
     private double pushVelocity = 0.2; //velocity to push players off horizontally in waterfall
 
-    public WaterListener(EnhancedWater plugin) {
+    public WaterListener(DeadlyWaters plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
 
@@ -33,7 +33,7 @@ public class WaterListener implements Listener {
     @EventHandler
     public void onPlayerWaterFall(PlayerMoveEvent e) {
         Player p = e.getPlayer();
-        if(p.isFlying()) return; //do not run if player is flying
+        if(p.getAllowFlight()) return; //do not run if player is flying
 
         Vector v = p.getVelocity();
         Location l = p.getLocation();
@@ -47,7 +47,7 @@ public class WaterListener implements Listener {
                 Location getTo = e.getTo();
                 Location to = new Location(p.getWorld(), getTo.getX(), getTo.getY(), getTo.getZ()).add(x * checkRange, 0, z * checkRange); //if we set this directly to e.getTo(), it will change player location
                 if (fallDistance > 5 && to.getBlock().isLiquid())
-                    p.damage(fallDistance / 4);
+                    p.damage(fallDistance / 2 - 3); //just over half the damage of regular fall (calculated as falldistance - 3)
 
                 //Waterfalls
                 Block currentBlock = p.getLocation().add(x * checkRange, 0, z * checkRange).getBlock();

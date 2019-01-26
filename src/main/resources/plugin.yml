@@ -1,7 +1,7 @@
-name: EnhancedWater
+name: DeadlyWaters
 version: 1.0.0
 author: Offz
-main: com.mineinabyss.enhancedwater.EnhancedWater
+main: com.mineinabyss.deadlywaters.DeadlyWaters
 
-prefix: EW
-description: A mod that makes water a lot more dangerous
+prefix: DW
+description: A plugin that makes water a lot more dangerous
