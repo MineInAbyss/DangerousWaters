@@ -1,4 +1,4 @@
-# DangerousWater
+# DangerousWaters
 
 Allows water damage and more realistic water functionality. Originally intended for [Mine in Abyss](https://github.com/MineInAbyss)
 
