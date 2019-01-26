@@ -4,8 +4,9 @@ Allows water damage and more realistic water functionality. Originally intended 
 
 ## Functionality
 
-* Damage users when falling into water
-* Push player down if they inside flowing water
+* Damages players when falling into water. Deals half the fall damage by default.
+* Stops players from swimming up long water streams.
+* Damages players when going down a waterfall
 
 ## Contributing
 
