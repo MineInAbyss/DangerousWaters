@@ -17,9 +17,9 @@ public class WaterListener implements Listener {
     private EnhancedWater plugin;
     private FileConfiguration config;
 
-    private double checkRange; //multiplier for blocks around player to be checked
-    private double fallRange; //block distance to check for player to be pushed while falling in water
-    private double pushVelocity; //velocity to push players off horizontally in waterfall
+    private double checkRange = 0.3; //multiplier for blocks around player to be checked
+    private double fallRange = 1.2; //block distance to check for player to be pushed while falling in water
+    private double pushVelocity = 0.2; //velocity to push players off horizontally in waterfall
 
     public WaterListener(EnhancedWater plugin) {
         this.plugin = plugin;
