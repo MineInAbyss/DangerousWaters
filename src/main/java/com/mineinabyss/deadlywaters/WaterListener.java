@@ -1,6 +1,7 @@
 package com.mineinabyss.deadlywaters;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Levelled;
@@ -33,7 +34,7 @@ public class WaterListener implements Listener {
     @EventHandler
     public void onPlayerWaterFall(PlayerMoveEvent e) {
         Player p = e.getPlayer();
-        if(p.getAllowFlight()) return; //do not run if player is flying
+        if (p.getAllowFlight()) return; //do not run if player is flying
 
         Vector v = p.getVelocity();
         Location l = p.getLocation();
@@ -46,8 +47,15 @@ public class WaterListener implements Listener {
                 //Fall damage from falling in water
                 Location getTo = e.getTo();
                 Location to = new Location(p.getWorld(), getTo.getX(), getTo.getY(), getTo.getZ()).add(x * checkRange, 0, z * checkRange); //if we set this directly to e.getTo(), it will change player location
-                if (fallDistance > 5 && to.getBlock().isLiquid())
+                Block block = to.getBlock();
+//                Material type = block.getType();
+                if (fallDistance > 5 && (block.isLiquid()
+//                        || type.equals(Material.LADDER) //TODO do we keep this or not?
+//                        || type.equals(Material.VINE))
+                        //for some reason cobwebs cancel the fall distance before we can see them in the getTo, so we just check for cobwebs half a block lower
+                        /*|| to.clone().add(0, -0.5, 0).getBlock().getType().equals(Material.COBWEB)*/)) {
                     p.damage(fallDistance / 2 - 3); //just over half the damage of regular fall (calculated as falldistance - 3)
+                }
 
                 //Waterfalls
                 Block currentBlock = p.getLocation().add(x * checkRange, 0, z * checkRange).getBlock();

@@ -1,5 +1,6 @@
 name: DeadlyWaters
 version: 1.0.0
+api-version: 1.15
 author: Offz
 main: com.mineinabyss.deadlywaters.DeadlyWaters
 
