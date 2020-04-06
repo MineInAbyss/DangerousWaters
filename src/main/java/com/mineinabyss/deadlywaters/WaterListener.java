@@ -22,6 +22,8 @@ public class WaterListener implements Listener {
     private double fallRange = 1.2; //block distance to check for player to be pushed while falling in water
     private double pushVelocity = 0.2; //velocity to push players off horizontally in waterfall
 
+    private boolean doDamage;
+
     public WaterListener(DeadlyWaters plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
@@ -29,6 +31,7 @@ public class WaterListener implements Listener {
         checkRange = config.getDouble("checkRange");
         fallRange = config.getDouble("fallRange");
         pushVelocity = config.getDouble("pushVelocity");
+        doDamage = config.getBoolean("doDamage", false);
     }
 
     @EventHandler
@@ -49,7 +52,7 @@ public class WaterListener implements Listener {
                 Location to = new Location(p.getWorld(), getTo.getX(), getTo.getY(), getTo.getZ()).add(x * checkRange, 0, z * checkRange); //if we set this directly to e.getTo(), it will change player location
                 Block block = to.getBlock();
 //                Material type = block.getType();
-                if (fallDistance > 5 && (block.isLiquid()
+                if (doDamage && fallDistance > 5 && (block.isLiquid()
 //                        || type.equals(Material.LADDER) //TODO do we keep this or not?
 //                        || type.equals(Material.VINE))
                         //for some reason cobwebs cancel the fall distance before we can see them in the getTo, so we just check for cobwebs half a block lower
@@ -80,7 +83,7 @@ public class WaterListener implements Listener {
                                 p.setVelocity(v.setZ(-pushVelocity).setY(0.1));
                         }
                         p.getWorld().spawnParticle(Particle.CLOUD, l, 2);
-                        if (y < -0.1)
+                        if (y < -0.1 && doDamage)
                             p.damage(2 * y * y); //damage player
                         return;
                     }
