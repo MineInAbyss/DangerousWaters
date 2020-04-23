@@ -6,3 +6,6 @@ fallRange: 1.2
 
 # Velocity to push players off horizontally in waterfall
 pushVelocity: 0.2
+
+# hurt the player
+doDamage: true
